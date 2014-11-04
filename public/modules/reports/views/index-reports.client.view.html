@@ -1,0 +1,239 @@
+<section class = "reports" data-ng-controller="ReportsController">
+
+  <div class="row row_m">
+    <div class="col-lg-3 whiteBackground">
+
+      <div class="btn-group protfolio-group-select-btn">
+        <button type="button" class="btn btn-default dropdown-toggle protfolio-group-select-btn" data-toggle="dropdown">
+          {{currentGroupTitle}}
+          <img ng-hide=groupReady src='/images/ajax-loader-tran.gif'>
+          <span ng-show=groupReady class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu protfolio-group-select-menu" role="menu">
+          <li ng-repeat="group in groups">
+            <a ng-click="updateStudents(group.id)">{{group.name}}</a>
+          </li>
+        </ul>
+      </div>
+
+
+
+      <ul class="nav">
+
+        <li ng-href="" ng-repeat="student in studentsList" class="report-student_namelist" ng-click="showReports(student.id,student.display_name)">
+          <div class="row">
+            <div class="col-lg-2">
+              <img class='report-student_avatar' src="http://placekitten.com/g/40/40" >
+            </div>
+
+            <div class="col-lg-10">
+
+              <p class="report-student-list-name">{{student.display_name}}</p>
+            </div>
+
+          </div>
+        </li>
+
+        <ul>
+        </div>
+
+        <div class="col-lg-9">
+
+          <div class="row col-lg-12">
+
+            <div class="col-lg-12 whiteBackground reportBox protfolio-student-info-container">
+
+              <div class="col-lg-2 protfolio-student-info-container">
+                <img class='report-student-info-avatar' src="http://placekitten.com/g/80/80">
+              </div>
+
+              <div class="col-lg-5 protfolio-student-info-container">
+                <p class="protfolio-student-info-name">Students Name : {{currentStudentName}}</p>
+                <button type="button" ng-click="downloadProtfolio()" class="btn btn-primary">Download</button>
+              </div>
+
+              <div class="col-lg-5 protfolio-student-info-container">
+                <button type="button" ng-click="addReport()" class="btn btn-default btn-lg protfolio-student-info-btn">Create Report</button>
+              </div>
+
+
+            </div>
+
+            <div class="col-lg-12 whiteBackground reportBox protfolio-filter-container">
+
+              <div class="row">
+
+                <div class="col-md-4 protfolio-filter-datepicker-container">
+                  <p class="input-group">
+                    <input type="text" class="form-control protfolio-filter-datepicker" show-button-bar=false datepicker-popup="{{format}}" ng-model="protfolioFilterStartDate" is-open="startDatePopupOpened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                    <span class="input-group-btn protfolio-filter-datepicker">
+                      <button type="button" class="btn btn-default protfolio-filter-datepicker" ng-click="openStartDatePopup($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+
+                <div class="col-md-4 protfolio-filter-datepicker-container">
+                  <p class="input-group">
+                    <input type="text" class="form-control protfolio-filter-datepicker" show-button-bar=false datepicker-popup="{{format}}" ng-model="protfolioFilterEndDate" is-open="endDatePopupOpened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                    <span class="input-group-btn protfolio-filter-datepicker">
+                      <button type="button" class="btn btn-default protfolio-filter-datepicker" ng-click="openEndDatePopup($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+
+                <div class="col-md-4 protfolio-filter-datepicker-container">
+                  <button type="button" class="btn btn-default" ng-click="filter()">
+                    Filter
+                  </button>
+                </div>
+
+
+
+              </div>
+
+            </div>
+
+            <div class="col-lg-12 whiteBackground reportBox">
+
+              <img ng-hide=reportsReady src='/images/loading.gif'>
+
+              <div ng-repeat = "report in reports" class="protfolio-card">
+                <div ng-if = "isNap(report.type)">
+                  <img src="/images/Report_list_icon/icon_menu_nap.png" class="report_list_icon">
+                  <h3 id="report_list_type_nap" >{{report.type}}</h3>
+                  <br>
+                  <p>From {{report.from_date}} to {{report.to_date}}</p>
+                  <p>{{report.payload}}</p>
+
+                </div>               
+
+                <div ng-if = "isActivity(report.type)">
+                  <img src="/images/Report_list_icon/icon_menu_activity.png" class="report_list_icon">
+                  <h3 id="report_list_type_activity">{{report.type}}</h3>
+                  <br>
+                  <p>{{report.payload}}</p>
+
+                  <div ng-repeat = "media in report.media" class="protfolio-images">
+                    <img  style="max-height: 120px;" src="{{media.public_url}}">
+                  </div>
+
+                </div> 
+
+                <div ng-if = "isDiaper(report.type)">
+                  <img src="/images/Report_list_icon/icon_menu_diaper.png" class="report_list_icon">
+                  <h3 id="report_list_type_diaper">{{report.type}}</h3>
+                  <br>
+                  <p> {{report.from_date}} : {{report.props[0].meta_value}}</p>
+                  <p>{{report.payload}}</p>
+
+
+                </div> 
+
+                <div ng-if = "isPotty(report.type)">
+                  <img src="/images/Report_list_icon/icon_menu_potty.png" class="report_list_icon">
+                  <h3 id="report_list_type_potty">{{report.type}}</h3>
+                  <br>
+                  <p> {{report.from_date}} : {{report.props[0].meta_value}}, {{report.props[1].meta_value}}</p>
+                  <p>{{report.payload}}</p>
+
+                </div> 
+
+                <div ng-if = "isMeal(report.type)">
+                  <img src="/images/Report_list_icon/icon_menu_meal.png" class="report_list_icon">
+                  <h3 class="report_list_type_meal">{{report.type}}</h3>
+                  <br>
+                  <p> {{report.from_date}} : </p>
+                  <p> Finish Amount: {{report.props[0].meta_value}}</p>
+                  <p>{{report.payload}}</p>
+
+                </div> 
+
+                <div ng-if = "isBottle(report.type)">
+                  <img src="/images/Report_list_icon/icon_menu_meal.png" class="report_list_icon">
+                  <h3 class="report_list_type_meal">{{report.type}}</h3>
+                  <br>
+                  <p> {{report.from_date}} : {{report.props[1].meta_value}}</p>
+                  <p> Intake : {{report.props[0].meta_value}} oz</p>                  
+                  
+                  <p>{{report.payload}}</p>
+
+
+                </div>                 
+
+                <div ng-if = "isMood(report.type)">
+                  <img ng-if = "report.payload == 'Cheerful'" src="/images/mood/mood_cheerful.png" class="report_list_icon">
+                  <img ng-if = "report.payload == 'Content'" src="/images/mood/mood_content.png" class="report_list_icon">
+                  <img ng-if = "report.payload == 'Curious'" src="/images/mood/mood_curious.png" class="report_list_icon">
+                  <img ng-if = "report.payload == 'Emotional'" src="/images/mood/mood_emotional.png" class="report_list_icon">
+                  <img ng-if = "report.payload == 'Happy'" src="/images/mood/mood_happy.png" class="report_list_icon">
+                  <img ng-if = "report.payload == 'Sensitive'" src="/images/mood/mood_sensitive.png" class="report_list_icon">
+                  <img ng-if = "report.payload == 'Tired'" src="/images/mood/mood_tired.png" class="report_list_icon">
+                  <h3 id="report_list_type_mood">{{report.payload}}</h3>
+                  <br>
+
+                </div> 
+
+                <div ng-if = "isReminder(report.type)">
+                  <img src="/images/Report_list_icon/icon_menu_reminder.png" class="report_list_icon">
+                  <h3 id="report_list_type_reminder">{{report.type}}</h3>
+                  <br>
+                  <p ng-repeat="reminds in report.props"> {{reminds.meta_value}} </p>
+                  <p>{{report.payload}}</p>
+
+                </div> 
+
+                <div ng-if = "isSong(report.type)">
+                  <img src="/images/Report_list_icon/icon_menu_songs.png" class="report_list_icon">
+                  <h3 id="report_list_type_song">{{report.type}}</h3>
+                  <p>{{report.payload}}</p>
+
+                </div> 
+
+                <div ng-if = "isReading(report.type)">
+                  <img src="/images/Report_list_icon/icon_menu_book.png" class="report_list_icon">
+                  <h3 id="report_list_type_reading">{{report.type}}</h3>
+                  <p>{{report.payload}}</p>
+
+                </div> 
+
+                <div ng-if = "isIncident(report.type)">
+                  <img src="/images/Report_list_icon/icon_menu_incident.png" class="report_list_icon">
+                  <h3 id="report_list_type_incident">{{report.type}}</h3>
+                  <br>
+                  <p ng-repeat="inc in report.props"> {{inc.meta_value}} </p>
+                  <p>{{report.payload}}</p>
+
+
+                </div> 
+
+                <div ng-if = "isOther(report.type)">
+                  <img src="/images/Report_list_icon/icon_menu_other.png" class="report_list_icon">
+                  <h3 id="report_list_type_other">{{report.type}}</h3>
+                  <p>{{report.payload}}</p>
+
+
+                </div>  
+
+
+                <div class='protfolio-card-more-container'>
+                  <div class='protfolio-card-update-btn-container protfolio-card-btn-container'>
+                    <button type="button" class="btn btn-warning protfolio-card-more-btn" ng-click="edit_report(report.id_str)">
+                      Edit
+                    </button>
+
+                  </div>
+                  <div class='protfolio-card-delete-btn-container protfolio-card-btn-container'>
+                    <button type="button" class="btn btn-danger protfolio-card-more-btn" ng-click="delete_report(report.id_str)">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </section>

@@ -1,0 +1,112 @@
+<head>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+</head>
+<section data-ng-controller='ReportsEditController'>
+    <div class="ngdialog-message">
+        <h5>Edit Report</h5><hr>
+
+        <div class="children_add">
+            <div class="child_add" ng-repeat="child in children">
+                <a ng-click="pop_child(child.id_str, children)" href=""><img title="{{child.displayName}}" id="child_add_pic" src="/images/temp.jpg"></a>
+            </div>
+            <a href="" ng-click="openStudentsListPopup()">
+                <div class="child_add new_child">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </div>
+            </a>
+        </div>
+
+        <div ng-if="isActivity()">
+            <br><br>Photo {{mediaList.length}}/4<br>
+            <div class="col-md-2" ng-repeat="pic in mediaList" class="photo_row">
+                <img ng-click="removePic(pic.id)" class="uploaded_pic" src="{{pic.public_url}}">
+            </div><br><br><br><br><br><br>
+            <input style="float:left;" type="file" data-ng-model="$parent.file"  base-sixty-four-input>
+            <button type="button" ng-click="upload()">submit</button>
+        </div>
+
+        <row g-if="isNap() || isDiaper() || isPotty() || isBottle() || isMeal()">
+            <div ng-if="isNap()" class="col-md-1" style="padding-top:33px;">From</div>
+            <timepicker ng-if="isNap() || isDiaper() || isPotty() || isBottle() || isMeal()"  data-ng-model="$parent.from" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" class="col-md-2">></timepicker>
+            <div ng-if="isNap()" class="col-md-1" style="padding-top:33px;">To</div>
+            <timepicker ng-if="isNap()"  data-ng-model="$parent.to" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" class="col-md-2"></timepicker>
+            <br><br><br>
+        </row>
+
+        <div ng-if="isDiaper()" class="btn-group">
+            <br>
+            <label class="btn btn-primary" data-ng-model="$parent.condition_diapper" btn-radio="'Wet'">Wet</label>
+            <label class="btn btn-primary" data-ng-model="$parent.condition_diapper" btn-radio="'BM'">BM</label>
+            <label class="btn btn-primary" data-ng-model="$parent.condition_diapper" btn-radio="'Dry'">Dry</label>
+        </div>
+        <div ng-if="isPotty()" class="btn-group">
+            <br>
+            <label class="btn btn-primary" data-ng-model="$parent.condition_potty1" btn-radio="'Succeed'">succeed</label>
+            <label class="btn btn-primary" data-ng-model="$parent.condition_potty1" btn-radio="'Tried'">tried</label>
+        </div>
+        <div ng-if="isPotty()" class="btn-group">
+            <br>
+            <label class="btn btn-primary" data-ng-model="$parent.condition_potty2" btn-radio="'Urianated'">Urianated</label>
+            <label class="btn btn-primary" data-ng-model="$parent.condition_potty2" btn-radio="'BM'">BM</label>
+        </div> 
+        <div ng-if="isBottle()">
+            <br>
+              Portion: <input data-ng-model="$parent.oz" style="width:50px;height:35px;"> oz
+              <br><br>
+              <div class="btn-group">
+                <label class="btn btn-primary" data-ng-model="$parent.condition_food" btn-radio="'breast milk'">breast milk</label>
+                <label class="btn btn-primary" data-ng-model="$parent.condition_food" btn-radio="'formula'">formula</label>
+                <label class="btn btn-primary" data-ng-model="$parent.condition_food" btn-radio="'milk'">milk</label>
+                <label class="btn btn-primary" data-ng-model="$parent.condition_food" btn-radio="'juice'">juice</label>
+                <label class="btn btn-primary" data-ng-model="$parent.condition_food" btn-radio="'water'">water</label>
+              </div>              
+        </div>
+        <div ng-if="isMeal()" class="btn-group">
+            <br><br><br>
+              <label class="btn btn-primary" data-ng-model="$parent.condition_meal" btn-radio="'all'">all</label>
+              <label class="btn btn-primary" data-ng-model="$parent.condition_meal" btn-radio="'some'">some</label>
+              <label class="btn btn-primary" data-ng-model="$parent.condition_meal" btn-radio="'most'">most</label>
+              <label class="btn btn-primary" data-ng-model="$parent.condition_meal" btn-radio="'none'">none</label>
+        </div>          
+        <br>
+          
+        <div ng-if="isReminder()">
+            <div class="btn-group">
+                <label class="btn btn-primary" data-ng-model="$parent.checkModel_wipe" btn-checkbox>wipe</label>
+                <label class="btn btn-primary" data-ng-model="$parent.checkModel_clothing" btn-checkbox>clothing</label>
+                <label class="btn btn-primary" data-ng-model="$parent.checkModel_sunscreen" btn-checkbox>sunscreen</label>
+                <label class="btn btn-primary" data-ng-model="$parent.checkModel_diaper" btn-checkbox>diaper</label>              
+            </div>             
+        </div>
+        <div ng-if="isIncident()" class="btn-group">
+            <br>
+              <label class="btn btn-primary" data-ng-model="$parent.checkModel_potty" btn-checkbox>Potty accident</label>
+              <label class="btn btn-primary" data-ng-model="$parent.checkModel_injury" btn-checkbox>Injury</label>
+        </div>            
+        </div>
+        <div ng-if="isMood()">
+          <br><br>
+          <div class="btn-group">
+            <label class="btn" data-ng-model="$parent.condition_mood" btn-radio="'Cheerful'"><img src="/images/mood/mood_cheerful.png"><br>Cheerful</label>
+            <label class="btn" data-ng-model="$parent.condition_mood" btn-radio="'Content'"><img src="/images/mood/mood_content.png"><br>Content</label>  
+            <label class="btn" data-ng-model="$parent.condition_mood" btn-radio="'Tired'"><img src="/images/mood/mood_tired.png"><br>Tired</label>  
+            <label class="btn" data-ng-model="$parent.condition_mood" btn-radio="'Sensitive'"><img src="/images/mood/mood_sensitive.png"><br>Sensitive</label>  
+            <label class="btn" data-ng-model="$parent.condition_mood" btn-radio="'Curious'"><img src="/images/mood/mood_curious.png"><br>Curious</label>  
+            <label class="btn" data-ng-model="$parent.condition_mood" btn-radio="'Playful'"><img src="/images/mood/mood_happy.png"><br>Playful</label>  
+            <label class="btn" data-ng-model="$parent.condition_mood" btn-radio="'Emotional'"><img src="/images/mood/mood_emotional.png"><br>Emotional</label> 
+          </div><br> 
+        </div> 
+
+
+          <br><div ng-if="!isMood()">
+          Detail<br>
+          <textarea class="report_detail_size" data-ng-model="$parent.report_detail" ng-change="changed=true"></textarea> </div>
+            <button  ng-show="isDisabled" type="button" class="ngdialog-button ngdialog-button-primary" ng-click="edit_report(oz)" >Save</button> 
+
+          <div class="ngdialog-buttons">
+            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('button')" >Close</button>
+          </div>               
+
+    </div>   
+
+</section>

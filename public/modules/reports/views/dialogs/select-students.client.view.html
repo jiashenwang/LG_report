@@ -1,0 +1,25 @@
+<section>
+
+  <div class="ngdialog-message">
+
+    <h3>Childrens</h3>
+
+    <div ng-repeat="student in studentsList" class='protfolio-students-list-student-card'>
+      <div>
+        <div class='' ng-click = 'toggleSelection(student)'>
+          <img src=http://placekitten.com/g/120/120>
+        </div>
+        <p>
+          <input type="checkbox" name="selectedFruits[]" ng-checked="selectedStudents.indexOf(student.id) > -1" ng-click="toggleSelection(student)">
+          {{student.display_name}}
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ngdialog-buttons">
+    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(dt)" >Next</button>
+    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('button')" >Close</button>
+  </div>
+</section>

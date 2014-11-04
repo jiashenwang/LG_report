@@ -1,0 +1,15 @@
+.vertical-container {
+  /*display: -webkit-flex;
+  display: flex;*/
+  /*height: 300px;*/
+}
+.vertically-centered {
+  margin: auto;
+}
+.full-width{
+	width : 100%
+}
+
+.stupid-banner{
+	margin-top : 4%;
+}

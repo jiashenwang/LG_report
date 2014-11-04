@@ -1,0 +1,121 @@
+.card{
+  /*background-color : #fff;*/
+  height : 300px;
+  margin-bottom : 20px;
+  margin-left : 20px;
+}
+
+.group.card{
+  background-color : #fff;
+
+}
+.card.half-card{
+  height : 150px;
+}
+
+.profile-edit-container{
+  text-align : center;
+  position : absolute;
+  bottom : 0px;
+  height : 40px;
+  left : 0px;
+  right : 0px;
+}
+
+.profile-name-container{
+  text-align : center;
+  position : absolute;
+  bottom : 40px;
+  height : 40px;
+  left : 0px;
+  right : 0px;
+  font-size : 22px;
+}
+
+.group-name-container{
+text-align : center;
+position : absolute;
+bottom : 40px;
+height : 40px;
+left : 0px;
+right : 0px;
+font-size : 18px;
+}
+
+.group-stauts-container{
+  text-align : center;
+  position : absolute;
+  bottom : 0px;
+  height : 40px;
+  left : 0px;
+  right : 0px;
+}
+
+.group-status-status-title{
+  text-align : center;
+  width : 100%;
+  position : absolute;
+  height : 20px;
+  top: 0px;
+
+}
+
+.group-status-status-count{
+  text-align : center;
+width : 100%;
+
+  position : absolute;
+height : 20px;
+  bottom : 0px;
+}
+.group-status-status-container{
+  padding : 0;
+  margin-top : 10px;
+}
+
+.group-add{
+  border : 3px dashed #999;
+  height : 90%;
+  margin-top : 7%;
+  text-align : center;
+  vertical-align : middle;
+  font-size : 350%;
+}
+
+.add-symbol{
+  top : 40%
+}
+
+.collaborator-add-container{
+  height : 80px;
+  margin-top :30px;
+  padding-right : 0px;
+  text-align : end;
+}
+.collaborator-add-avatra-container{
+  height : 80px;
+  width : 80px;
+  border : 3px dashed #999;
+
+}
+
+.collaborator-invitation-container{
+  height : 60px;
+  border-bottom : 1px solid #ddd;
+  margin-bottom : 10px;
+}
+
+.collaborator-invitation-avatar{
+  height : 40px;
+  width : 40px;
+}
+
+
+.enrollment-enrollments-btn-group{
+  position : absolute;
+  right : 0px;
+}
+
+.enrollment-multiadd-textarea{
+  margin-top : -30px;
+}

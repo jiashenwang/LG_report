@@ -1,0 +1,51 @@
+<section data-ng-controller="addGroupDialogController" data-ng-init="init()">
+
+  <div class="ngdialog-message">
+
+
+    <div class="col-lg-10 col-lg-offset-1">
+
+      <h3 class="bottom-line">Add Class</h3>
+    </hr>
+
+    <div class="col-lg-12">
+
+      <div class="col-lg-2">
+
+      </div>
+
+      <div class="col-lg-10">
+        <div class="form-group">
+          <label>Class Name</label>
+          <input type="text" class="form-control" placeholder="" data-ng-model="name" >
+        </div>
+
+        <div class="form-group">
+          <label>Grade</label>
+          <select class="form-control" ng-model="stageId" ng-options="stage.name for stage in stages"></select>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-lg-12">
+
+      <div class="form-group">
+        <label>Portfolio</label>
+        <select class="form-control" ng-model="portfolioId" ng-options="domain.name group by domain.group for domain in domains"></select>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+<div class="ngdialog-buttons">
+  <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="create()">Submit</button>
+  <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('button')" >Close</button>
+</div>
+</section>

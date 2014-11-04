@@ -1,0 +1,63 @@
+.content {
+	margin-top: 50px;
+}
+.undecorated-link:hover {
+	text-decoration: none;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+.ng-invalid.ng-dirty{
+    border-color:#FA787E;
+}
+.ng-valid.ng-dirty{
+    border-color:#78FA89;
+}
+
+
+html{
+	background-color:#eee;
+}
+
+.gray-background{
+	background-color:#eee;
+}
+
+.white-background{
+	background-color:#fff;
+}
+
+.full-size{
+	width : 100%;
+	height : 100%
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+	-webkit-animation: ngdialog-flyin .5s;
+	animation: ngdialog-flyin .5s;
+	background: #f0f0f0;
+	border-radius: 5px;
+	color: #444;
+	font-family: 'Helvetica',sans-serif;
+	font-size: 1.1em;
+	line-height: 1.5em;
+	margin: 0 auto;
+	max-width: 100%;
+	padding: 1em;
+	position: relative;
+	width: 60%;
+}
+
+.dashed-line{
+	border : 3px dashed #999;
+}
+
+.bottom-line{
+	padding-bottom : 5px;
+	border-bottom : 1px solid #ccc;
+}
+
+.avatar-container-140{
+	width : 140;
+	height : 140;
+}

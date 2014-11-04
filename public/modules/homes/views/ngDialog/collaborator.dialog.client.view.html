@@ -1,0 +1,71 @@
+<section data-ng-controller="collaboratorDialogController" data-ng-init="init()">
+
+  <div class="ngdialog-message">
+
+
+    <div class="col-lg-10 col-lg-offset-1">
+
+      <h3 class="bottom-line">Teachers</h3>
+    </hr>
+
+    <div class="col-lg-12">
+
+      <div class="col-lg-2 collaborator-add-avatra-container">
+
+      </div>
+
+      <div class="col-lg-8 collaborator-add-container">
+
+        <div class="form-group">
+          <!-- <label>Teacher Name</label> -->
+          <input type="text" class="form-control" placeholder="Teacher Name" data-ng-model="create.name" >
+        </div>
+
+      </div>
+
+      <div class="col-lg-2 collaborator-add-container">
+        <!-- <label>       </label> -->
+        <button class="ngdialog-button ngdialog-button-primary" ng-click="inviteCollaborator()">Add</button>
+      </div>
+    </div>
+
+
+    <div class="col-lg-12">
+
+      <div class="collaborator-invitation-container" ng-repeat="invitation in invitations">
+        <div class="col-lg-2">
+          <!-- <img ng-hide = "{{invitation.is_confirmed}}" src="" class="collaborator-invitation-avatar dashed-line"> -->
+          <img ng-show = "{{invitation.is_confirmed}}" src="" class="collaborator-invitation-avatar">
+        </div>
+
+        <div class="col-lg-6">
+          <div>
+            {{invitation.user_display_name}}
+          </div>
+
+        </div>
+
+        <div class="col-lg-2">
+          <button class="btn btn-danger" ng-click="deleteInvitation(invitation.id)">Delete</button>
+        </div>
+
+        <div class="col-lg-2">
+            {{invitation.is_confirmed}}
+
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+<div class="ngdialog-buttons">
+  <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="create()">Submit</button>
+  <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('button')" >Close</button>
+</div>
+</section>

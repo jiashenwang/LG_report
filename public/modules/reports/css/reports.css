@@ -1,0 +1,288 @@
+.reports{
+	padding-top: 20px;
+}
+.protfolio-group-select-btn{
+  width : 100%
+}
+
+.protfolio-group-select-menu{
+  width : 100%
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content{
+   width : 65%;
+}
+
+.protfolio-student-info-container{
+    height : 100px;
+    vertical-align : middle;
+}
+
+.protfolio-student-info-name{
+    height : 20px;
+    margin-top : 20px;
+}
+
+.protfolio-student-info-btn{
+    height : 60px;
+    margin-top : 20px;
+}
+
+.protfolio-tags{
+  margin-right : 5px;
+}
+
+.protfolio-images{
+  display : inline-block;
+  margin-right : 10px;
+}
+
+.protfolio-card{
+  margin-bottom : 10px;
+  border-bottom : 1px solid #ddd;
+}
+
+.protfolio-filter-datepicker{
+  height : 30px !important;
+
+}
+
+.protfolio-filter-datepicker-container{
+  margin-top : 15px;
+}
+
+
+.protfolio-filter-container{
+  height : 60px;
+}
+.protfolio-students-list-student-card{
+  margin-right : 10px;
+  display : inline-block;
+}
+
+.protfolio-adding-student-icon-card{
+  margin-right : 10px;
+  display : inline-block;
+}
+
+.protfolio-adding-student-icon-adding{
+  display : inline-block;
+}
+
+.protfolio-add-domains-btn{
+  width : 47%;
+  margin-right : 20px;
+  margin-top : 5px;
+}
+
+
+.protfolio-tags-field{
+  border : 1px solid #ddd;
+  height : 80px;
+  border-radius : 10px;
+
+}
+
+.protfolio-tags-delete-box{
+  display : inline-block;
+  border-left : 1px solid #ddd;
+  padding-left : 5px;
+  margin-left : 2px;
+}
+
+.protfolio-tags-container{
+  //border : 1px solid #ddd;
+  display : inline-block;
+  //width : 70px;
+  //background-color : #428bca;
+  //border-radius : 10px;
+
+}
+
+.protfolio-card-btn-container{
+  display : inline-block;
+  width : 49%;
+  margin-top : 10px;
+  text-align : center;
+
+}
+
+.protfolio-card-update-btn-container{
+  border-right : 1px solid #ddd;
+}
+
+.protfolio-card-more-container{
+  //border-top : 1px solid #ddd;;
+  height : 50px;
+}
+
+
+.protfolio-card-more-btn{
+  width : 80%;
+}
+
+.protfoili-delete-confirm-dialog-btn{
+  display : inline-block;
+  width : 49%
+}
+
+/*
+	report icon and head 
+*/
+/* report list UI*/
+.report_list_icon{
+  float:left;
+  width:50px;
+  height:50px;
+}
+#report_list_type_nap{
+  color:rgb(25,171,174);
+  padding-left: 60px;
+  padding-top: 10px;
+}
+#report_list_type_activity{
+  color:rgb(215,44,49);
+  padding-left: 60px;
+  padding-top: 10px;
+}
+#report_list_type_diaper{
+  color:rgb(246,121,0);
+  padding-left: 60px;
+  padding-top: 10px;
+}
+#report_list_type_potty{
+  color:rgb(247,174,0);
+  padding-left: 60px;
+  padding-top: 10px;  
+}
+.report_list_type_meal{
+  color:rgb(135,186,0);
+  padding-left: 60px;
+  padding-top: 10px;    
+}
+#report_list_type_reminder{
+  color:rgb(93,41,158);
+  padding-left: 60px;
+  padding-top: 10px;  
+}
+#report_list_type_song{
+  color:rgb(246,0,83);
+  padding-left: 60px;
+  padding-top: 10px;   
+}
+#report_list_type_reading{
+  color:rgb(16,179,55);
+  padding-left: 60px;
+  padding-top: 10px;   
+}
+#report_list_type_incident{
+  color:rgb(4,168,171);
+  padding-left: 60px;
+  padding-top: 10px;    
+}
+#report_list_type_other{
+  color:rgb(26,86,183);
+  padding-left: 60px;
+  padding-top: 10px;  
+}
+#report_list_type_mood{
+  padding-left: 60px;
+  padding-top: 10px;    
+}
+
+
+/*
+new report css
+*/
+.report_detail_size {
+    resize: none;
+    min-width: 500px;
+    min-height: 100px;
+}
+
+.row_m{
+  margin-top : 50px;
+}
+
+
+
+.report-student_namelist{
+  height : 50px;
+	border-bottom-style: dotted;
+	border-width: 1px;
+}
+
+.report-student_avatar{
+  margin-top : 5px;
+}
+
+.report-student-list-name{
+
+}
+
+.report-student-info-container{
+    height : 100px;
+}
+
+.report-student-info-avatar{
+    height : 80px;
+    margin-top : 10px;
+}
+
+.report-filter-container{
+    height : 60px;
+}
+
+.report-add-btn{
+  float : right;
+  margin-right : 10px;
+  height : 40px;
+}
+
+.children_add{
+	width:500px;
+	border-style: solid;
+    border-width: 1px;
+    padding:4px;
+    border-color: #B8B8B8 ;
+}
+
+.child_add{
+	display: inline-block;
+}
+#child_add_pic{
+	padding-right: 5px;
+	padding-bottom: 5px;
+	width:40px;
+	height:40px;
+}
+.new_child{
+	border-style: dashed;
+    border-width: 2px;
+    padding:4px;
+    border-color:#B8B8B8 ;
+    width:33px;
+	height:33px;
+}
+
+.report_detail_size{
+	width:300px;
+	height:100px;
+}
+.time_input{
+	width:110px;
+}
+.showDate{
+  padding-left: 100px;
+}
+
+
+/* activity media css */
+.photo_row{
+	width:500px;
+	height:100px;
+}
+.uploaded_pic{
+    width:100px;
+	height:110px;
+}

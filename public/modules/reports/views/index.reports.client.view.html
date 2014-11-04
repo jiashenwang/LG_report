@@ -1,0 +1,144 @@
+<section data-ng-controller="ReportsController">
+
+  <div class="row row_m">
+    <div class="col-lg-3 whiteBackground">
+
+
+      <div class="btn-group protfolio-group-select-btn">
+        <button type="button" class="btn btn-default dropdown-toggle protfolio-group-select-btn" data-toggle="dropdown">
+          {{currentGroupTitle}}
+          <img ng-hide=groupReady src='/images/ajax-loader-tran.gif'>
+          <span ng-show=groupReady class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu protfolio-group-select-menu" role="menu">
+          <li ng-repeat="group in groups">
+            <a ng-click="updateStudents(group.id)">{{group.name}}</a>
+          </li>
+        </ul>
+      </div>
+
+
+
+      <ul class="nav">
+
+        <li ng-href="" ng-repeat="student in studentsList" class="report-student_namelist" ng-click="showProtfolio(student.id,student.display_name)">
+          <div class="row">
+            <div class="col-lg-2">
+              <img class='report-student_avatar' src="http://placekitten.com/g/40/40" >
+            </div>
+
+            <div class="col-lg-10">
+
+              <p class="report-student-list-name">{{student.display_name}}</p>
+            </div>
+
+          </div>
+        </li>
+
+        <ul>
+        </div>
+
+        <div class="col-lg-9">
+
+          <div class="row col-lg-12">
+
+            <div class="col-lg-12 whiteBackground reportBox protfolio-student-info-container">
+
+              <div class="col-lg-2 protfolio-student-info-container">
+                <img class='report-student-info-avatar' src="http://placekitten.com/g/80/80">
+              </div>
+
+              <div class="col-lg-5 protfolio-student-info-container">
+                <p class="protfolio-student-info-name">Students Name : {{currentStudentName}}</p>
+                <button type="button" ng-click="downloadProtfolio()" class="btn btn-primary">Download</button>
+              </div>
+
+              <div class="col-lg-5 protfolio-student-info-container">
+                <button type="button" ng-click="addProtfolio()" class="btn btn-default btn-lg protfolio-student-info-btn">Create Report</button>
+              </div>
+
+
+            </div>
+
+            <div class="col-lg-12 whiteBackground reportBox protfolio-filter-container">
+
+              <div class="row">
+
+                <div class="col-md-4 protfolio-filter-datepicker-container">
+                  <p class="input-group">
+                    <input type="text" class="form-control protfolio-filter-datepicker" show-button-bar=false datepicker-popup="{{format}}" ng-model="protfolioFilterStartDate" is-open="startDatePopupOpened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                    <span class="input-group-btn protfolio-filter-datepicker">
+                      <button type="button" class="btn btn-default protfolio-filter-datepicker" ng-click="openStartDatePopup($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+
+                <div class="col-md-4 protfolio-filter-datepicker-container">
+                  <p class="input-group">
+                    <input type="text" class="form-control protfolio-filter-datepicker" show-button-bar=false datepicker-popup="{{format}}" ng-model="protfolioFilterEndDate" is-open="endDatePopupOpened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                    <span class="input-group-btn protfolio-filter-datepicker">
+                      <button type="button" class="btn btn-default protfolio-filter-datepicker" ng-click="openEndDatePopup($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+
+                <div class="col-md-4 protfolio-filter-datepicker-container">
+                  <button type="button" class="btn btn-default" ng-click="">
+                    Filter
+                  </button>
+                </div>
+
+
+
+              </div>
+
+            </div>
+
+            <div class="col-lg-12 whiteBackground reportBox">
+
+
+              <div ng-repeat = "protfolio in protfoliosDetail" class="protfolio-card">
+                <p>
+                  {{protfolio.create_at}}
+                </p>
+
+                <p>
+                  {{protfolio.payload}}
+                </p>
+
+                <div ng-repeat = "media in protfolio.media" class="protfolio-images">
+                  <img  style="max-height: 120px;" src="{{media.public_url}}">
+                </div>
+
+                <h4>
+                  <span ng-repeat = "domain in protfolio.domains" class="label label-primary protfolio-tags">
+                    {{domain.abbreviation}}
+                  </span>
+
+                  <span ng-repeat = "tag in protfolio.tags" class="label label-primary">
+                    {{tag.value}}
+                  </span>
+                </h4>
+
+                <div class='protfolio-card-more-container'>
+                  <div class='protfolio-card-update-btn-container protfolio-card-btn-container'>
+                    <button type="button" class="btn btn-warning protfolio-card-more-btn" ng-click="updateProtfolio(protfolio.id_str)">
+                      Edit
+                    </button>
+
+                  </div>
+                  <div class='protfolio-card-delete-btn-container protfolio-card-btn-container'>
+                    <button type="button" class="btn btn-danger protfolio-card-more-btn" ng-click="openDeleteConfirmDialog(protfolio.id_str)">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </section>

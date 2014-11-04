@@ -1,0 +1,105 @@
+<section class="stupid-banner" data-ng-controller="HomesController" data-ng-init="init()">
+
+  <div class="row gray-background">
+
+
+    <div class="col-lg-2">
+
+      <div class="col-lg-12 card">
+
+        <div class="col-lg-12">
+          <img src="http://placehold.it/205x207" alt="..." class="img-rounded">
+        </div>
+
+        <div class="col-lg-12 profile-name-container">
+          {{displayName}}
+        </div>
+
+        <div class="col-lg-12 profile-edit-container">
+          <button class="btn btn-default full-size" ng-click="openProfileDialog()">Edit Profile</button>
+        </div>
+
+      </div>
+
+      <div class="col-lg-12 card half-card">
+        <div class="list-group">
+          <a href="#" class="list-group-item" ng-repeat="center in centers">{{center.name}}</a>
+        </div>
+      </div>
+
+      <!-- <div class="col-lg-12 card half-card">
+      archieve classes
+    </div> -->
+
+  </div>
+
+  <div class="col-lg-10">
+    <div class="col-lg-2 group card" ng-repeat="group in groups">
+      <div class="col-lg-12" ng-click="openEditGroupDialog(group.id)">
+
+        <img src="{{group.icon_url}}" alt="..." class="img-rounded" ng-show="{{group.icon_url}}">
+        <img src="http://placehold.it/165x207" alt="..." class="img-rounded">
+
+      </div>
+
+      <div class="col-lg-12 group-name-container">
+        {{group.name}}
+
+      </div>
+
+
+      <div class="col-lg-12 group-stauts-container">
+
+        <div class="col-lg-4 group-status-status-container" ng-click="openCollaboratorDialog(group.id)">
+          <div class="group-status-status-count">
+            {{group.collaboratorCount}}
+
+          </div>
+
+          <div class="group-status-status-title">
+            Teachers
+          </div>
+
+        </div>
+
+        <div class="col-lg-4 group-status-status-container" ng-click="openEnrollmentDialog(group.id)">
+
+          <div class="group-status-status-count">
+            {{group.enrollmentCount}}
+
+          </div>
+
+          <div class="group-status-status-title">
+            Students
+          </div>
+
+
+
+        </div>
+
+        <div class="col-lg-4 group-status-status-container">
+          <div class="group-status-status-count">
+            -
+          </div>
+
+          <div class="group-status-status-title">
+            Parents
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-2 group card">
+
+      <div class="col-lg-12 group-add" ng-click="openAddGroupDialog()">
+        <span class="glyphicon glyphicon-plus add-symbol"></span>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+</section>

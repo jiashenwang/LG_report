@@ -1,0 +1,335 @@
+  <head>
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  </head>
+<section data-ng-controller="ReportsAddController">
+  <div class="ngdialog-message">
+    <h5>Add Report</h5>
+    <hr>
+
+    <div class="tabbable tabs-left">
+      <ul class="nav nav-tabs" >
+         <li ng-class="getTabClass(1)" ng-click="setActiveTab(1)"><a href="" data-toggle="tab">Activity</a></li>
+         <li ng-class="getTabClass(2)" ng-click="setActiveTab(2)"><a href="" data-toggle="tab">Nap</a></li>
+         <li ng-class="getTabClass(3)" ng-click="setActiveTab(3)"><a href="" data-toggle="tab">Potty</a></li>
+         <li ng-class="getTabClass(12)" ng-click="setActiveTab(12)"><a href="" data-toggle="tab">Meal</a></li>
+         <li ng-class="getTabClass(4)" ng-click="setActiveTab(4)"><a href="" data-toggle="tab">Bottle</a></li>
+         <li ng-class="getTabClass(5)" ng-click="setActiveTab(5)"><a href="" data-toggle="tab">Reminder</a></li>
+         <li ng-class="getTabClass(6)" ng-click="setActiveTab(6)"><a href="" data-toggle="tab">Diapper</a></li>
+         <li ng-class="getTabClass(7)" ng-click="setActiveTab(7)"><a href="" data-toggle="tab">Song</a></li>
+         <li ng-class="getTabClass(8)" ng-click="setActiveTab(8)"><a href="" data-toggle="tab">Reading</a></li>
+         <li ng-class="getTabClass(9)" ng-click="setActiveTab(9)"><a href="" data-toggle="tab">Incident</a></li>
+         <li ng-class="getTabClass(10)" ng-click="setActiveTab(10)"><a href="" data-toggle="tab">Other</a></li>
+         <li ng-class="getTabClass(11)" ng-click="setActiveTab(11)"><a href="" data-toggle="tab">Mood</a></li>
+      </ul>
+      <div class="tab-content">
+        <div ng-class="getTabPaneClass(1)" id="activity">    
+          Add Children
+          <div class="children_add">
+              <div class="child_add" ng-repeat="studentAct in studentsActList">
+                <a href=""><img id="child_add_pic" src="/images/temp.jpg"></a>
+              </div>
+              <a href="" ng-click="openStudentsListPopup()">
+                <div class="child_add new_child">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </a>
+          </div>
+          <br><br>
+          Detail<br>
+          <textarea class="report_detail_size" data-ng-model="report_detail"></textarea>
+          <br><br>Photo {{mediaList.length}}/4<br>
+          <div class="col-md-2" ng-repeat="pic in mediaList" class="photo_row">
+            <img ng-click="removePic(pic.id)" class="uploaded_pic" src="{{pic.url}}">
+          </div><br><br><br><br><br><br>
+          <input style="float:left;" type="file" data-ng-model="file"  base-sixty-four-input>
+          <button type="button" ng-click="upload()">submit</button>
+          
+          <button type="button" style="floaat:right;" class="ngdialog-button ngdialog-button-primary" ng-click="addNotes_activity(report_detail)" >Save</button>
+        </div>       
+        
+        <div ng-class="getTabPaneClass(2)" id="nap">     
+          Add Children
+          <div class="children_add">
+              <div class="child_add" ng-repeat="studentAct in studentsActList">
+                <a href=""><img id="child_add_pic" src="/images/temp.jpg"></a>
+              </div>
+              <a href="" ng-click="openStudentsListPopup()">
+                <div class="child_add new_child">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </a>
+          </div>
+          <br>
+          <row>
+            <div class="col-md-1" style="padding-top:33px;">From</div>
+            <timepicker  ng-model="from" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"
+              class="col-md-2">></timepicker>
+            <!--<input class="time_input" type="time" data-ng-model="from"> -->
+            <div class="col-md-1" style="padding-top:33px;">To</div>
+            <timepicker  ng-model="to" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"
+            class="col-md-2"></timepicker>
+            <!--<input class="time_input" type="time" data-ng-model="to"> -->
+          </row>
+          <br><br><br><br>
+          Comments<br>
+          <textarea class="report_detail_size" data-ng-model="report_detail"></textarea>
+          <button type="button" style="floaat:right;" class="ngdialog-button ngdialog-button-primary" ng-click="addNotes_nap(report_detail, from, to)" >Save</button>
+        </div>
+        
+        <div ng-class="getTabPaneClass(3)" id="potty">     
+          Add Children
+          <div class="children_add">
+              <div class="child_add" ng-repeat="studentAct in studentsActList">
+                <a href=""><img id="child_add_pic" src="/images/temp.jpg"></a>
+              </div>
+              <a href="" ng-click="openStudentsListPopup()">
+                <div class="child_add new_child">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </a>
+          </div>
+          <br>
+          <row>
+            <timepicker  ng-model="from" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"
+              class="col-md-2">></timepicker>
+            <!--<input class="time_input" type="time" data-ng-model="from"> -->
+          </row>
+          <br><br><br><br>
+          <div class="btn-group">
+            <label class="btn btn-primary" ng-model="condition_potty1" btn-radio="'Succeed'">succeed</label>
+            <label class="btn btn-primary" ng-model="condition_potty1" btn-radio="'Tried'">tried</label>
+          </div><br><br>
+          <div class="btn-group">
+            <label class="btn btn-primary" ng-model="condition_potty2" btn-radio="'Urianated'">Urianated</label>
+            <label class="btn btn-primary" ng-model="condition_potty2" btn-radio="'BM'">BM</label>
+          </div><br>         
+
+          <button type="button" style="floaat:right;" class="ngdialog-button ngdialog-button-primary" ng-click="addNotes_potty(from, condition_potty1, condition_potty2)" >Save</button>
+        </div>
+        
+        <div ng-class="getTabPaneClass(4)" id="Bottle">     
+          Add Children
+          <div class="children_add">
+              <div class="child_add" ng-repeat="studentAct in studentsActList">
+                <a href=""><img id="child_add_pic" src="/images/temp.jpg"></a>
+              </div>
+              <a href="" ng-click="openStudentsListPopup()">
+                <div class="child_add new_child">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </a>
+          </div>
+          <br>
+          <row>
+            <timepicker  ng-model="from" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"
+              class="col-md-2">></timepicker>
+            <!--<input class="time_input" type="time" data-ng-model="from"> -->
+          </row>
+          <br><br><br><br>
+          Portion: <input type="number" ng-model="oz" min="0" max="20" style="width:50px;height:35px;"> oz
+          <br><br>
+          <div class="btn-group">
+            <label class="btn btn-primary" ng-model="condition_food" btn-radio="'breast milk'">breast milk</label>
+            <label class="btn btn-primary" ng-model="condition_food" btn-radio="'formula'">formula</label>
+            <label class="btn btn-primary" ng-model="condition_food" btn-radio="'milk'">milk</label>
+            <label class="btn btn-primary" ng-model="condition_food" btn-radio="'juice'">juice</label>
+            <label class="btn btn-primary" ng-model="condition_food" btn-radio="'water'">water</label>
+          </div><br><br>
+          <button type="button" style="floaat:right;" class="ngdialog-button ngdialog-button-primary" ng-click="addNotes_bottle(from, oz, condition_food)" >Save</button>
+        </div>  
+
+        <div ng-class="getTabPaneClass(5)" id="reminder">    
+          Add Children
+          <div class="children_add">
+              <div class="child_add" ng-repeat="studentAct in studentsActList">
+                <a href=""><img id="child_add_pic" src="/images/temp.jpg"></a>
+              </div>
+              <a href="" ng-click="openStudentsListPopup()">
+                <div class="child_add new_child">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </a>
+          </div>
+          <br><br>
+          <div class="btn-group">
+              <label class="btn btn-primary" ng-model="checkModel.wipe" btn-checkbox>wipe</label>
+              <label class="btn btn-primary" ng-model="checkModel.clothing" btn-checkbox>clothing</label>
+              <label class="btn btn-primary" ng-model="checkModel.sunscreen" btn-checkbox>sunscreen</label>
+              <label class="btn btn-primary" ng-model="checkModel.diaper" btn-checkbox>diaper</label>              
+          </div>      
+          <br><br>
+          Comments<br>
+          <textarea class="report_detail_size" data-ng-model="report_detail"></textarea>
+          <button type="button" style="floaat:right;" class="ngdialog-button ngdialog-button-primary" ng-click="addNotes_reminder(report_detail, checkModel.wipe, checkModel.clothing, checkModel.sunscreen, checkModel.diaper)" >Save</button>
+         </div>       
+        
+        <div ng-class="getTabPaneClass(6)" id="diapper">     
+          Add Children
+          <div class="children_add">
+              <div class="child_add" ng-repeat="studentAct in studentsActList">
+                <a href=""><img id="child_add_pic" src="/images/temp.jpg"></a>
+              </div>
+              <a href="" ng-click="openStudentsListPopup()">
+                <div class="child_add new_child">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </a>
+          </div>
+          <br>
+          <row>
+            <timepicker  ng-model="from" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"
+              class="col-md-2">></timepicker>
+            <!--<input class="time_input" type="time" data-ng-model="from"> -->
+          </row>
+          <br><br><br><br>
+          <div class="btn-group">
+            <label class="btn btn-primary" ng-model="condition" btn-radio="'Wet'">Wet</label>
+            <label class="btn btn-primary" ng-model="condition" btn-radio="'BM'">BM</label>
+            <label class="btn btn-primary" ng-model="condition" btn-radio="'Dry'">Dry</label>
+          </div><br><br><br>
+          Comments<br>
+          <textarea class="report_detail_size" data-ng-model="report_detail"></textarea>
+          <button type="button" style="floaat:right;" class="ngdialog-button ngdialog-button-primary" ng-click="addNotes_diapper(report_detail, from, condition)" >Save</button>
+        </div>
+        
+        <div ng-class="getTabPaneClass(7)" id="Song">     
+          Add Children
+          <div class="children_add">
+              <div class="child_add" ng-repeat="studentAct in studentsActList">
+                <a href=""><img id="child_add_pic" src="/images/temp.jpg"></a>
+              </div>
+              <a href="" ng-click="openStudentsListPopup()">
+                <div class="child_add new_child">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </a>
+          </div>
+          <br><br>
+          Comments<br>
+          <textarea class="report_detail_size" data-ng-model="report_detail"></textarea>
+          <button type="button" style="floaat:right;" class="ngdialog-button ngdialog-button-primary" ng-click="addNotes_song(report_detail)" >Save</button>
+        </div>
+        
+        <div ng-class="getTabPaneClass(8)" id="Reading">     
+          Add Children
+          <div class="children_add">
+              <div class="child_add" ng-repeat="studentAct in studentsActList">
+                <a href=""><img id="child_add_pic" src="/images/temp.jpg"></a>
+              </div>
+              <a href="" ng-click="openStudentsListPopup()">
+                <div class="child_add new_child">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </a>
+          </div>
+          <br><br>
+          Comments<br>
+          <textarea class="report_detail_size" data-ng-model="report_detail"></textarea>
+          <button type="button" style="floaat:right;" class="ngdialog-button ngdialog-button-primary" ng-click="addNotes_reading(report_detail)" >Save</button>
+        </div>  
+        <div ng-class="getTabPaneClass(9)" id="incident">     
+          Add Children
+          <div class="children_add">
+              <div class="child_add" ng-repeat="studentAct in studentsActList">
+                <a href=""><img id="child_add_pic" src="/images/temp.jpg"></a>
+              </div>
+              <a href="" ng-click="openStudentsListPopup()">
+                <div class="child_add new_child">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </a>
+          </div>
+          <br><br>
+          <div class="btn-group">
+              <label class="btn btn-primary" ng-model="checkModel_potty" btn-checkbox>Potty accident</label>
+              <label class="btn btn-primary" ng-model="checkModel_injury" btn-checkbox>Injury</label>
+          </div>      
+          <br><br>
+          Comments<br>
+          <textarea class="report_detail_size" data-ng-model="report_detail"></textarea>
+          <button type="button" style="floaat:right;" class="ngdialog-button ngdialog-button-primary" ng-click="addNotes_incident(report_detail, checkModel_potty, checkModel_injury)" >Save</button>
+        </div>
+        
+        <div ng-class="getTabPaneClass(10)" id="Other">     
+          Add Children
+          <div class="children_add">
+              <div class="child_add" ng-repeat="studentAct in studentsActList">
+                <a href=""><img id="child_add_pic" src="/images/temp.jpg"></a>
+              </div>
+              <a href="" ng-click="openStudentsListPopup()">
+                <div class="child_add new_child">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </a>
+          </div>
+          <br><br>
+          Comments<br>
+          <textarea class="report_detail_size" data-ng-model="report_detail"></textarea>
+          <button type="button" style="floaat:right;" class="ngdialog-button ngdialog-button-primary" ng-click="addNotes_other(report_detail)" >Save</button>
+        </div>
+        
+        <div ng-class="getTabPaneClass(11)" id="mood">     
+          Add Children
+          <div class="children_add">
+              <div class="child_add" ng-repeat="studentAct in studentsActList">
+                <a href=""><img id="child_add_pic" src="/images/temp.jpg"></a>
+              </div>
+              <a href="" ng-click="openStudentsListPopup()">
+                <div class="child_add new_child">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </a>
+          </div>   
+
+          <br><br>
+          <div class="btn-group">
+            <label class="btn" ng-model="condition_mood" btn-radio="'Cheerful'"><img src="/images/mood/mood_cheerful.png"><br>Cheerful</label>
+            <label class="btn" ng-model="condition_mood" btn-radio="'Content'"><img src="/images/mood/mood_content.png"><br>Content</label>  
+            <label class="btn" ng-model="condition_mood" btn-radio="'Tired'"><img src="/images/mood/mood_tired.png"><br>Tired</label>  
+            <label class="btn" ng-model="condition_mood" btn-radio="'Sensitive'"><img src="/images/mood/mood_sensitive.png"><br>Sensitive</label>  
+            <label class="btn" ng-model="condition_mood" btn-radio="'Curious'"><img src="/images/mood/mood_curious.png"><br>Curious</label>  
+            <label class="btn" ng-model="condition_mood" btn-radio="'Playful'"><img src="/images/mood/mood_happy.png"><br>Playful</label>  
+            <label class="btn" ng-model="condition_mood" btn-radio="'Emotional'"><img src="/images/mood/mood_emotional.png"><br>Emotional</label> 
+          </div><br><br>      
+
+          <button type="button" style="floaat:right;" class="ngdialog-button ngdialog-button-primary" ng-click="addNotes_mood(condition_mood)" >Save</button>
+        </div>  
+
+          <div ng-class="getTabPaneClass(12)" id="meal">
+            Add Children
+            <div class="children_add">
+                <div class="child_add" ng-repeat="studentAct in studentsActList">
+                  <a href=""><img id="child_add_pic" src="/images/temp.jpg"></a>
+                </div>
+                <a href="" ng-click="openStudentsListPopup()">
+                  <div class="child_add new_child">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </div>
+                </a>
+            </div>
+            <br>
+            <row>
+              <timepicker  ng-model="from" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"
+                class="col-md-2">></timepicker>
+              <!--<input class="time_input" type="time" data-ng-model="from"> -->
+            </row>
+            <br><br><br><br>
+            <div class="btn-group">
+              <label class="btn btn-primary" ng-model="condition_meal" btn-radio="'all'">all</label>
+              <label class="btn btn-primary" ng-model="condition_meal" btn-radio="'some'">some</label>
+              <label class="btn btn-primary" ng-model="condition_meal" btn-radio="'most'">most</label>
+              <label class="btn btn-primary" ng-model="condition_meal" btn-radio="'none'">none</label>
+            </div><br><br><br>
+            Comments<br>
+            <textarea class="report_detail_size" data-ng-model="report_detail"></textarea>
+            <button type="button" style="floaat:right;" class="ngdialog-button ngdialog-button-primary" ng-click="addNotes_meal(report_detail, from, condition_meal)" >Save</button>              
+          </div>  
+      
+      </div>
+    </div>
+
+  <div class="ngdialog-buttons">
+    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('success')" >Next</button>
+    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('button')" >Close</button>
+  </div>
+</section>

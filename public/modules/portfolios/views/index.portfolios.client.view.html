@@ -1,0 +1,54 @@
+<section class="stupid-banner" data-ng-init="init()">
+
+  <div class="row gray-background">
+    <div class="col-lg-2 col-lg-offset-1">
+      <select class="form-control" ng-change="selectAGroup(false)" ng-model="group" ng-options="group.groupName group by group.centerName for group in groups"></select>
+      <div class="list-group">
+        <a class="list-group-item" ng-click="selectAEnrollment(enrollment.id)" ng-repeat="enrollment in enrollments">{{enrollment.display_name}}</a>
+      </div>
+
+
+    </div>
+
+    <div class="col-lg-8">
+
+      <div class = "col-lg-12">
+
+        <div class="col-lg-2">
+          <div>
+            Avatar
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          Student Name
+        </div>
+
+        <div class="col-lg-2">
+          <button class="btn btn-primary"> Add Portfolio </button>
+        </div>
+
+      </div>
+
+      <div class = "col-lg-12">
+
+        Date Filter
+
+      </div>
+
+      <div class = "col-lg-12">
+
+        <div class="note-container white-background" ng-repeat = "note in notes">
+          {{note.create_at}}
+          {{note.payload}}
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
